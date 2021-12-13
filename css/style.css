@@ -1,0 +1,42 @@
+body {
+  font-family:Arial, Helvetica, sans-serif;
+  background-color: rgb(212, 223, 197);
+}
+
+header {
+  background-color: cadetblue;
+  height: 200px;
+  
+}
+
+h1 {
+  font-size: 80px;
+  text-align: center;
+  padding: 30px;
+  letter-spacing: 10px;
+}
+
+
+section {
+  display: flex;
+  width: 75%;
+  background-color: crimson;
+  margin:25px auto;
+  justify-content: space-around;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  margin: 25px;
+
+}
+
+main div{
+  padding: 10px;
+  display: inline-block;
+  border: 5px;
+  background-color:rgb(212, 223, 197);
+
+}
