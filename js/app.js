@@ -7,7 +7,10 @@ const allItems = [];
 //let theShelf = [];
 
 let counter = 0;
-let MAX_COUNTER = 5;
+let MAX_COUNTER = 10;
+
+// use the book shelf analogy
+let theShelf = [];
 
 // Window into the DOM
 let myContainer = document.getElementById('container');
@@ -60,31 +63,6 @@ function getRandomIndex() {
   return Math.floor(Math.random() * allItems.length);
 }
 
-Array.prototype.sample = function () {
-  return this[Math.floor(Math.random() * allItems.length)];
-};
-
-// shelf analogy for what can be picked
-
-
-
-// let itemOneIndex = theShelf.sample();
-// //console.log(itemOneIndex);
-// theShelf.splice(itemOneIndex,1);
-// //console.log(theShelf);
-
-
-// let itemTwoIndex = theShelf.sample();
-// //console.log(itemTwoIndex);
-// theShelf.splice(itemTwoIndex,1);
-// //console.log(theShelf);
-
-// let itemThreeIndex = theShelf.sample();
-// console.log(itemThreeIndex);
-// theShelf.splice(itemThreeIndex,1);
-// console.log(theShelf);
-
-
 
 
 
@@ -93,31 +71,28 @@ Array.prototype.sample = function () {
 
 function renderImages() {
 
-  let theShelf = [];
+  //console.log(theShelf);
 
-  while(theShelf.length < 3) {
+  while (theShelf.length < 6) {
     let randoNum = getRandomIndex();
-    while (!theShelf.includes(randoNum)){
-      theShelf.push(randoNum);
+    while (!theShelf.includes(randoNum)) {
+      theShelf.unshift(randoNum);
     }
   }
   //console.log(theShelf);
 
   let itemOneIndex = theShelf[0];
-  //console.log(itemOneIndex);
-  //theShelf.splice(itemOneIndex, 1);
-  //console.log(theShelf);
-
 
   let itemTwoIndex = theShelf[1];
-  //console.log(itemTwoIndex);
-  //theShelf.splice(itemTwoIndex, 1);
-  //console.log(theShelf);
 
   let itemThreeIndex = theShelf[2];
-  //console.log(itemThreeIndex);
-  //theShelf.splice(itemThreeIndex, 1);
+
+  for (let i = 3; i < 6; i++) {
+    theShelf.pop([i]);
+  }
+
   //console.log(theShelf);
+
 
 
   imageOne.src = allItems[itemOneIndex].src;
@@ -138,6 +113,7 @@ function renderImages() {
 
 
 
+//Event Handlers
 function handleImageClick(e) {
 
   counter++;
@@ -162,29 +138,69 @@ function handleImageClick(e) {
 
 
 
-
 function handleShowResultsVoted(e) {
 
   let displayResults = document.getElementById('display-results');
 
   if (counter === MAX_COUNTER) {
-    for (let i = 0; i < allItems.length; i++) {
-      let li = document.createElement('li');
-      li.textContent = `${allItems[i].name} was viewed ${allItems[i].views} times and chosen ${allItems[i].votes} time.`;
-      displayResults.appendChild(li);
-    }
+    renderItemsChart();
   }
 }
 
 
+//Exectuable Functions
 renderImages();
 
-
+//Event Listeners
 myContainer.addEventListener('click', handleImageClick);
-
 
 showResults.addEventListener('click', handleShowResultsVoted);
 
 
+function renderItemsChart() {
+
+  const ctx = document.getElementById('chart').getContext('2d');
+
+  let itemNames = [];
+  let itemVotes = [];
+  let itemViews = [];
 
 
+  for (let i = 0; i < allItems.length; i++) {
+    itemNames.push(allItems[i].name);
+    itemVotes.push(allItems[i].votes);
+    itemViews.push(allItems[i].views);
+  }
+
+
+  let myChartData = {
+    type: 'bar',
+    data: {
+      labels: itemNames,
+      datasets: [{
+        label: '# of Votes',
+        data: itemVotes,
+        backgroundColor: 'rgba(162, 228, 132, 0.77)',
+        borderColor: 'rgba(194, 213, 227, 0.77)',
+        borderWidth: 1
+      },
+      {
+        label: '# of Views',
+        data: itemViews,
+        backgroundColor: 'rgba(49, 75, 145, 0.77)',
+        borderColor: 'rgba(194, 213, 227, 0.77)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  };
+
+
+  let myChart = new Chart(ctx, myChartData);
+}
