@@ -37,6 +37,7 @@ main div{
   padding: 10px;
   display: inline-block;
   border: 5px;
-  background-color:rgb(212, 223, 197);
+  background-color:rgb(105, 138, 59);
+  height: 100px;
 
 }
