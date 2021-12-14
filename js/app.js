@@ -6,22 +6,20 @@
 const allItems = [];
 
 let counter = 0;
-let MAX_COUNTER = 3;
+let MAX_COUNTER = 5;
 
 // Window into the DOM
-let myContainer = document.getElementById("container");
+let myContainer = document.getElementById('container');
 
 
 //accessing Dom images
-let imageOne = document.getElementById("image-one");
-let imageTwo = document.getElementById("image-two");
-let imageThree = document.getElementById("image-three");
+let imageOne = document.getElementById('image-one');
+let imageTwo = document.getElementById('image-two');
+let imageThree = document.getElementById('image-three');
 
 // shows results button
-let showResults = document.getElementById("show-results");
+let showResults = document.getElementById('show-results');
 
-// displays results list
-let displayResults = document.getElementById("display-results");
 
 
 
@@ -62,8 +60,8 @@ new Item('wine-glass');
 //   return Math.floor(Math.random() * allItems.length);
 // }
 
-Array.prototype.sample = function(){
-  return this[Math.floor(Math.random()*allItems.length)];
+Array.prototype.sample = function () {
+  return this[Math.floor(Math.random() * allItems.length)];
 };
 
 // shelf analogy for what can be picked
@@ -103,39 +101,38 @@ for (let i = 0; i < allItems.length; i++) {
 
 
 function renderImages() {
-  
-  counter++;
+
 
   let theShelf = [];
 
   //number used for array
   let number = 0;
-  
+
   for (let i = 0; i < allItems.length; i++) {
     theShelf.push(number);
     number = number + 1;
   }
-  
-  //console.log(theShelf);
-  
-  
-  let itemOneIndex = theShelf.sample();
-  //console.log(itemOneIndex);
-  theShelf.splice(itemOneIndex,1);
-  //console.log(theShelf);
-  
-  
-  let itemTwoIndex = theShelf.sample();
-  //console.log(itemTwoIndex);
-  theShelf.splice(itemTwoIndex,1);
-  //console.log(theShelf);
-  
-  let itemThreeIndex = theShelf.sample();
-  //console.log(itemThreeIndex);
-  theShelf.splice(itemThreeIndex,1);
+
   //console.log(theShelf);
 
-  
+
+  let itemOneIndex = theShelf.sample();
+  //console.log(itemOneIndex);
+  theShelf.splice(itemOneIndex, 1);
+  //console.log(theShelf);
+
+
+  let itemTwoIndex = theShelf.sample();
+  //console.log(itemTwoIndex);
+  theShelf.splice(itemTwoIndex, 1);
+  //console.log(theShelf);
+
+  let itemThreeIndex = theShelf.sample();
+  //console.log(itemThreeIndex);
+  theShelf.splice(itemThreeIndex, 1);
+  //console.log(theShelf);
+
+
   imageOne.src = allItems[itemOneIndex].src;
   imageOne.alt = allItems[itemOneIndex].name;
   allItems[itemOneIndex].views++;
@@ -153,16 +150,12 @@ function renderImages() {
 
 }
 
-renderImages();
 
 
-
-if (counter === MAX_COUNTER) {
-  myContainer.removeEventListener('click', handleImageClick);
-
-}
 
 function handleImageClick(e) {
+
+  counter++;
   let imageVotes = e.target.alt;
 
   console.log(imageVotes);
@@ -173,15 +166,20 @@ function handleImageClick(e) {
       allItems[i].votes++;
     }
   }
-  
+
   renderImages();
 
+  if (counter === MAX_COUNTER) {
+    myContainer.removeEventListener('click', handleImageClick);
+
+  }
 }
 
 
 
 
-function handleShowResultsVoted() {
+function handleShowResultsVoted(e) {
+
   let displayResults = document.getElementById('display-results');
 
   if (counter === MAX_COUNTER) {
@@ -194,11 +192,13 @@ function handleShowResultsVoted() {
 }
 
 
+renderImages();
+
 
 myContainer.addEventListener('click', handleImageClick);
 
 
-showResults.addEventListener('clicks', handleShowResultsVoted);
+showResults.addEventListener('click', handleShowResultsVoted);
 
 
 
