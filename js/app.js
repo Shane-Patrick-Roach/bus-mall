@@ -4,6 +4,7 @@
 
 // Global Variables
 const allItems = [];
+//let theShelf = [];
 
 let counter = 0;
 let MAX_COUNTER = 5;
@@ -24,7 +25,6 @@ let showResults = document.getElementById('show-results');
 
 
 function Item(name, fileExtension = 'jpg') {
-
   this.name = name;
   this.src = `img/${name}.${fileExtension}`;
   this.views = 0;
@@ -56,25 +56,16 @@ new Item('water-can');
 new Item('wine-glass');
 
 
-// function getRandomIndex() {
-//   return Math.floor(Math.random() * allItems.length);
-// }
+function getRandomIndex() {
+  return Math.floor(Math.random() * allItems.length);
+}
 
 Array.prototype.sample = function () {
   return this[Math.floor(Math.random() * allItems.length)];
 };
 
 // shelf analogy for what can be picked
-let theShelf = [];
 
-//number used for array
-let number = 0;
-
-
-for (let i = 0; i < allItems.length; i++) {
-  theShelf.push(number);
-  number = number + 1;
-}
 
 
 // let itemOneIndex = theShelf.sample();
@@ -102,34 +93,30 @@ for (let i = 0; i < allItems.length; i++) {
 
 function renderImages() {
 
-
   let theShelf = [];
 
-  //number used for array
-  let number = 0;
-
-  for (let i = 0; i < allItems.length; i++) {
-    theShelf.push(number);
-    number = number + 1;
+  while(theShelf.length < 3) {
+    let randoNum = getRandomIndex();
+    while (!theShelf.includes(randoNum)){
+      theShelf.push(randoNum);
+    }
   }
-
   //console.log(theShelf);
 
-
-  let itemOneIndex = theShelf.sample();
+  let itemOneIndex = theShelf[0];
   //console.log(itemOneIndex);
-  theShelf.splice(itemOneIndex, 1);
+  //theShelf.splice(itemOneIndex, 1);
   //console.log(theShelf);
 
 
-  let itemTwoIndex = theShelf.sample();
+  let itemTwoIndex = theShelf[1];
   //console.log(itemTwoIndex);
-  theShelf.splice(itemTwoIndex, 1);
+  //theShelf.splice(itemTwoIndex, 1);
   //console.log(theShelf);
 
-  let itemThreeIndex = theShelf.sample();
+  let itemThreeIndex = theShelf[2];
   //console.log(itemThreeIndex);
-  theShelf.splice(itemThreeIndex, 1);
+  //theShelf.splice(itemThreeIndex, 1);
   //console.log(theShelf);
 
 
@@ -144,8 +131,6 @@ function renderImages() {
   imageThree.src = allItems[itemThreeIndex].src;
   imageThree.alt = allItems[itemThreeIndex].name;
   allItems[itemThreeIndex].views++;
-
-  //renderImages();
 
 
 }
@@ -185,7 +170,7 @@ function handleShowResultsVoted(e) {
   if (counter === MAX_COUNTER) {
     for (let i = 0; i < allItems.length; i++) {
       let li = document.createElement('li');
-      li.textContent = `${allItems}`;
+      li.textContent = `${allItems[i].name} was viewed ${allItems[i].views} times and chosen ${allItems[i].votes} time.`;
       displayResults.appendChild(li);
     }
   }
