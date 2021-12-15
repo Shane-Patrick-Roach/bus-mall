@@ -3,7 +3,7 @@
 //console.log('hello world');
 
 // Global Variables
-const allItems = [];
+let allItems = [];
 //let theShelf = [];
 
 let counter = 0;
@@ -36,27 +36,38 @@ function Item(name, fileExtension = 'jpg') {
 
 }
 
-//console.log(allItems)
 
-new Item('bag');
-new Item('banana');
-new Item('bathroom');
-new Item('boots');
-new Item('breakfast');
-new Item('bubblegum');
-new Item('chair');
-new Item('cthulhu');
-new Item('dog-duck');
-new Item('dragon');
-new Item('pen');
-new Item('pet-sweep');
-new Item('scissors');
-new Item('shark');
-new Item('sweep', 'png');
-new Item('tauntaun');
-new Item('unicorn');
-new Item('water-can');
-new Item('wine-glass');
+
+let retreivedItems = localStorage.getItem('items');
+
+
+if (retreivedItems){
+
+  let parsedItems = JSON.parse(retreivedItems);
+  allItems = parsedItems;
+} else {
+  new Item('bag');
+  new Item('banana');
+  new Item('bathroom');
+  new Item('boots');
+  new Item('breakfast');
+  new Item('bubblegum');
+  new Item('chair');
+  new Item('cthulhu');
+  new Item('dog-duck');
+  new Item('dragon');
+  new Item('pen');
+  new Item('pet-sweep');
+  new Item('scissors');
+  new Item('shark');
+  new Item('sweep', 'png');
+  new Item('tauntaun');
+  new Item('unicorn');
+  new Item('water-can');
+  new Item('wine-glass');
+}
+
+
 
 
 function getRandomIndex() {
@@ -144,6 +155,13 @@ function handleShowResultsVoted(e) {
 
   if (counter === MAX_COUNTER) {
     renderItemsChart();
+
+    let stringifiedItems = JSON.stringify(allItems);
+    //console.log(stringifiedItems);
+
+    // 2. Save it to localStorage
+    localStorage.setItem('items', stringifiedItems);
+
   }
 }
 
