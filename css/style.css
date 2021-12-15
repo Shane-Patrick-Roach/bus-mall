@@ -1,35 +1,51 @@
 body {
   font-family:Arial, Helvetica, sans-serif;
-  background-color: rgb(212, 223, 197);
+  background-color: rgb(221, 225, 236);
 }
 
 header {
-  background-color: cadetblue;
-  height: 200px;
-  
+  background-color: rgb(47, 207, 212);
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  border: 1px solid  black;
+  padding: 30px;
 }
 
 h1 {
-  font-size: 80px;
-  text-align: center;
-  padding: 30px;
-  letter-spacing: 10px;
+  color: rgb(255, 255, 255);
+  font-size: 70px;
+  padding: 15px;
+  letter-spacing: 15px;
+  word-spacing: 10px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
 }
 
+#bus-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
 
 section {
   display: flex;
   width: 75%;
-  background-color: crimson;
-  margin:25px auto;
+  background-color: rgb(166, 162, 216);
+  border-radius: 30px;
+  margin:100px auto;
   justify-content: space-around;
 }
 
-img {
-  width: 200px;
-  height: 200px;
+section img {
+  box-shadow: 15px 15px rgb(47, 207, 212);
+  width: 300px;
+  height: 300px;
   border: 1px solid black;
   margin: 25px;
+  border-radius: 15px;
 
 }
 
@@ -38,7 +54,13 @@ main div {
   padding: 10px;
   width: max-content;
   border: 2px solid black;
-  background-color: lightblue;
+  background-color: rgb(62, 205, 253);
   margin: auto;
   border-radius: 5px;
+}
+
+
+#chart {
+  background-color: rgb(155, 242, 245);
+  border-radius: 30px;
 }
