@@ -21,6 +21,8 @@ Lab 13
 
 ---
 
+- 12/15/21 Added Lab 13. The information from the user is now stored in a local storage to all marketers to see multiple user data. Some CSS was added aswell.
+
 
 
 Lab 14
