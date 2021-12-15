@@ -180,15 +180,15 @@ function renderItemsChart() {
       datasets: [{
         label: '# of Votes',
         data: itemVotes,
-        backgroundColor: 'rgba(162, 228, 132, 0.77)',
-        borderColor: 'rgba(194, 213, 227, 0.77)',
+        backgroundColor: 'rgba(50, 50, 200,1)',
+        borderColor: 'rgba(49, 75, 145, 0.77)',
         borderWidth: 1
       },
       {
         label: '# of Views',
         data: itemViews,
-        backgroundColor: 'rgba(49, 75, 145, 0.77)',
-        borderColor: 'rgba(194, 213, 227, 0.77)',
+        backgroundColor: 'rgba(213, 68, 119, 0.77)',
+        borderColor: 'rgba(49, 75, 145, 0.77)',
         borderWidth: 1
       }]
     },
@@ -203,4 +203,6 @@ function renderItemsChart() {
 
 
   let myChart = new Chart(ctx, myChartData);
+
 }
+

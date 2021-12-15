@@ -13,6 +13,8 @@ Lab 12
 
 ---
 
+- 12/14/21 Added Lab 12: Busmall items. Work on chartjs. Prevented users from seeing the same image in two subsequent iterations. Added visual representation of bar charts by importing ChartJS library.
+
 
 
 Lab 13
