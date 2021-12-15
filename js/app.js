@@ -7,7 +7,7 @@ let allItems = [];
 //let theShelf = [];
 
 let counter = 0;
-let MAX_COUNTER = 10;
+let MAX_COUNTER = 25;
 
 // use the book shelf analogy
 let theShelf = [];
