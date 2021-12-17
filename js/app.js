@@ -29,7 +29,7 @@ let showResults = document.getElementById('show-results');
 
 function Item(name, fileExtension = 'jpg') {
   this.name = name;
-  this.src = `/img/${name}.${fileExtension}`;
+  this.src = `img/${name}.${fileExtension}`;
   this.views = 0;
   this.votes = 0;
   allItems.push(this);
@@ -45,6 +45,7 @@ if (retreivedItems){
 
   let parsedItems = JSON.parse(retreivedItems);
   allItems = parsedItems;
+  
 } else {
   new Item('bag');
   new Item('banana');
